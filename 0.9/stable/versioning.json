@@ -1,8 +1,8 @@
 {
-  "buildTime": "2025-03-17T14:55:02.578Z",
+  "buildTime": "2025-03-17T15:26:28.709Z",
   "builtWith": {
-    "toolchain": "1.0.0-alpha.39",
-    "types": "1.0.0-alpha.39"
+    "toolchain": "1.0.0-alpha.41",
+    "types": "1.0.0-alpha.41"
   },
   "repository": {
     "name": "Madara Extensions (0.9)",
