@@ -1,5 +1,5 @@
 {
-  "buildTime": "2025-03-10T21:29:00.475Z",
+  "buildTime": "2025-03-17T14:55:02.578Z",
   "builtWith": {
     "toolchain": "1.0.0-alpha.39",
     "types": "1.0.0-alpha.39"
@@ -12,7 +12,7 @@
     {
       "name": "Toonily",
       "description": "Extension that pulls content from Toonily.com.",
-      "version": "1.0.0-alpha.1",
+      "version": "1.0.0-alpha.2",
       "icon": "icon.png",
       "language": "en",
       "contentRating": "ADULT",
