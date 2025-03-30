@@ -2305,7 +2305,7 @@ var source = (() => {
         }
         return components;
       }
-      var URL4 = class {
+      var URL3 = class {
         protocol;
         hostname;
         path;
@@ -2499,7 +2499,7 @@ var source = (() => {
           return this;
         }
       };
-      exports.URL = URL4;
+      exports.URL = URL3;
     }
   });
 
@@ -9641,13 +9641,12 @@ var source = (() => {
     }
   });
 
-  // src/Toonily/main.ts
+  // src/ResetScans/main.ts
   var main_exports = {};
   __export(main_exports, {
-    Toonily: () => Toonily
+    ResetScans: () => ResetScans
   });
   init_buffer();
-  var import_types7 = __toESM(require_lib(), 1);
 
   // src/generic/Madara.ts
   init_buffer();
@@ -24521,16 +24520,16 @@ Can fix the homepage "request page not found" error!`
     }
   };
 
-  // src/Toonily/pbconfig.ts
+  // src/ResetScans/pbconfig.ts
   init_buffer();
   var import_types6 = __toESM(require_lib(), 1);
   var pbconfig_default = {
-    name: "Toonily",
-    description: "Extension that pulls content from toonily.com",
+    name: "ResetScans",
+    description: "Extension that pulls content from reset-scans.co",
     version: "1.0.0",
     icon: "icon.png",
     language: "\u{1F1EC}\u{1F1E7}",
-    contentRating: import_types6.ContentRating.ADULT,
+    contentRating: import_types6.ContentRating.EVERYONE,
     badges: [],
     capabilities: import_types6.SourceIntents.MANGA_CHAPTERS | import_types6.SourceIntents.DISCOVER_SECIONS | import_types6.SourceIntents.SETTINGS_UI | import_types6.SourceIntents.MANGA_SEARCH | import_types6.SourceIntents.CLOUDFLARE_BYPASS_REQUIRED,
     developers: [
@@ -24541,40 +24540,20 @@ Can fix the homepage "request page not found" error!`
     ]
   };
 
-  // src/Toonily/main.ts
-  var DOMAIN = "https://toonily.com";
-  var ToonilyExtension = class extends MadaraGeneric {
+  // src/ResetScans/main.ts
+  var DOMAIN = "https://reset-scans.co";
+  var ResetScansExtension = class extends MadaraGeneric {
     constructor() {
       super({
         domain: DOMAIN,
         name: pbconfig_default.name,
         contentRating: pbconfig_default.contentRating,
         language: pbconfig_default.language,
-        usePostIds: true,
-        searchMangaSelector: "div.page-item-detail.manga",
-        searchRatingSelector: "span#averagerate"
-      });
-    }
-    constructSearchRequest(page, query) {
-      const urlBuilder = new import_types7.URL(this.domain).setPath(
-        `search${query?.title ? encodeURIComponent(this.sanitizeQuery(query?.title ?? "")) + "/" : ""}/page/${page.toString()}`
-      ).setQueryItem("post_type", "wp-manga");
-      const genreFilters = Object.keys(
-        query.filters.find((x) => x.id === "genres")?.value ?? {}
-      );
-      if (genreFilters.length) {
-        genreFilters.forEach(
-          (genre, i) => urlBuilder.setQueryItem(`genre[${i}]`, genre)
-        );
-        urlBuilder.setQueryItem("op", "1");
-      }
-      return Application.scheduleRequest({
-        url: urlBuilder.toString(),
-        method: "GET"
+        usePostIds: true
       });
     }
   };
-  var Toonily = new ToonilyExtension();
+  var ResetScans = new ResetScansExtension();
   return __toCommonJS(main_exports);
 })();
 /*! Bundled license information:
