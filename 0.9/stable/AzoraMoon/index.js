@@ -2305,7 +2305,7 @@ var source = (() => {
         }
         return components;
       }
-      var URL4 = class {
+      var URL3 = class {
         protocol;
         hostname;
         path;
@@ -2499,7 +2499,7 @@ var source = (() => {
           return this;
         }
       };
-      exports.URL = URL4;
+      exports.URL = URL3;
     }
   });
 
@@ -9641,13 +9641,12 @@ var source = (() => {
     }
   });
 
-  // src/Toonily/main.ts
+  // src/AzoraMoon/main.ts
   var main_exports = {};
   __export(main_exports, {
-    Toonily: () => Toonily
+    AzoraMoon: () => AzoraMoon
   });
   init_buffer();
-  var import_types7 = __toESM(require_lib(), 1);
 
   // src/generic/Madara.ts
   init_buffer();
@@ -24521,17 +24520,85 @@ Can fix the homepage "request page not found" error!`
     }
   };
 
-  // src/Toonily/pbconfig.ts
+  // src/AzoraMoon/parser.ts
+  init_buffer();
+  var AzoraMoonParser = class extends MadaraParser {
+    parseDate = (date) => {
+      date = date.toUpperCase().trim();
+      if (date.includes("\u0642\u0628\u0644 \u0633\u0627\u0639\u0629") || date.includes("\u0627\u0644\u0627\u0646")) {
+        return /* @__PURE__ */ new Date();
+      }
+      if (date.includes("\u064A\u0648\u0645\u064A\u0646")) {
+        return new Date(Date.now() - 2 * 864e5);
+      }
+      const timeUnits = {
+        \u0633\u0646\u0629: 31556952e3,
+        \u0633\u0646\u0648\u0627\u062A: 31556952e3,
+        \u0634\u0647\u0631: 2592e6,
+        \u0634\u0647\u0648\u0631: 2592e6,
+        \u0627\u0633\u0628\u0648\u0639: 6048e5,
+        \u0627\u0633\u0627\u0628\u064A\u0639: 6048e5,
+        \u0627\u0633\u0628\u0648\u0639\u064A\u0646: 6048e5,
+        \u064A\u0648\u0645: 864e5,
+        \u0627\u064A\u0627\u0645: 864e5,
+        \u0633\u0627\u0639\u0629: 36e5,
+        \u0633\u0627\u0639\u0627\u062A: 36e5,
+        \u062F\u0642\u064A\u0642\u0629: 6e4,
+        \u062F\u0642\u0627\u0626\u0642: 6e4,
+        \u062B\u0627\u0646\u064A\u0629: 1e3,
+        \u062B\u0648\u0627\u0646\u064A: 1e3,
+        \u062B\u0627\u0646\u064A\u0627: 1e3
+      };
+      const match = date.match(
+        /(\d+)\s*(سنة|سنوات|شهر|شهور|اسبوع|اسبوعين|اسابيع|يوم|ايام|ساعة|ساعات|دقيقة|دقائق|ثانية|ثواني|ثانيا)/
+      );
+      if (match) {
+        const [, numStr, unit] = match;
+        const number = Number(numStr);
+        return new Date(Date.now() - number * timeUnits[unit]);
+      }
+      const arabicMonths = {
+        \u064A\u0646\u0627\u064A\u0631: "January",
+        \u0641\u0628\u0631\u0627\u064A\u0631: "February",
+        \u0645\u0627\u0631\u0633: "March",
+        \u0623\u0628\u0631\u064A\u0644: "April",
+        \u0627\u0628\u0631\u064A\u0644: "April",
+        \u0645\u0627\u064A\u0648: "May",
+        \u064A\u0648\u0646\u064A\u0648: "June",
+        \u064A\u0648\u0644\u064A\u0648: "July",
+        \u0623\u063A\u0633\u0637\u0633: "August",
+        \u0627\u063A\u0633\u0637\u0633: "August",
+        \u0633\u0628\u062A\u0645\u0628\u0631: "September",
+        \u0623\u0643\u062A\u0648\u0628\u0631: "October",
+        \u0627\u0643\u062A\u0648\u0628\u0631: "October",
+        \u0646\u0648\u0641\u0645\u0628\u0631: "November",
+        \u062F\u064A\u0633\u0645\u0628\u0631: "December"
+      };
+      Object.entries(arabicMonths).forEach(([arabic, english]) => {
+        date = date.replace(new RegExp(arabic, "gi"), english);
+      });
+      const parsedDate = new Date(date);
+      return isNaN(parsedDate.getTime()) ? /* @__PURE__ */ new Date() : parsedDate;
+    };
+  };
+
+  // src/AzoraMoon/pbconfig.ts
   init_buffer();
   var import_types6 = __toESM(require_lib(), 1);
   var pbconfig_default = {
-    name: "Toonily",
-    description: "Extension that pulls content from toonily.com.",
+    name: "AzoraMoon",
+    description: "Extension that pulls content from azoramoon.com.",
     version: "1.0.0-alpha.1",
     icon: "icon.png",
-    language: "\u{1F1EC}\u{1F1E7}",
-    contentRating: import_types6.ContentRating.ADULT,
-    badges: [],
+    language: "\u{1F1E6}\u{1F1EA}",
+    contentRating: import_types6.ContentRating.EVERYONE,
+    badges: [
+      {
+        label: "Arabic",
+        textColor: "#ffffff",
+        backgroundColor: "#808080"
+      }
+    ],
     capabilities: import_types6.SourceIntents.MANGA_CHAPTERS | import_types6.SourceIntents.DISCOVER_SECIONS | import_types6.SourceIntents.SETTINGS_UI | import_types6.SourceIntents.MANGA_SEARCH | import_types6.SourceIntents.CLOUDFLARE_BYPASS_REQUIRED,
     developers: [
       {
@@ -24541,9 +24608,9 @@ Can fix the homepage "request page not found" error!`
     ]
   };
 
-  // src/Toonily/main.ts
-  var DOMAIN = "https://toonily.com";
-  var ToonilyExtension = class extends MadaraGeneric {
+  // src/AzoraMoon/main.ts
+  var DOMAIN = "https://azoramoon.com";
+  var AzoraMoonExtension = class extends MadaraGeneric {
     constructor() {
       super({
         domain: DOMAIN,
@@ -24551,30 +24618,11 @@ Can fix the homepage "request page not found" error!`
         contentRating: pbconfig_default.contentRating,
         language: pbconfig_default.language,
         usePostIds: true,
-        searchMangaSelector: "div.page-item-detail.manga",
-        searchRatingSelector: "span#averagerate"
-      });
-    }
-    constructSearchRequest(page, query) {
-      const urlBuilder = new import_types7.URL(this.domain).setPath(
-        `search${query?.title ? encodeURIComponent(this.sanitizeQuery(query?.title ?? "")) + "/" : ""}/page/${page.toString()}`
-      ).setQueryItem("post_type", "wp-manga");
-      const genreFilters = Object.keys(
-        query.filters.find((x) => x.id === "genres")?.value ?? {}
-      );
-      if (genreFilters.length) {
-        genreFilters.forEach(
-          (genre, i) => urlBuilder.setQueryItem(`genre[${i}]`, genre)
-        );
-        urlBuilder.setQueryItem("op", "1");
-      }
-      return Application.scheduleRequest({
-        url: urlBuilder.toString(),
-        method: "GET"
+        parser: new AzoraMoonParser()
       });
     }
   };
-  var Toonily = new ToonilyExtension();
+  var AzoraMoon = new AzoraMoonExtension();
   return __toCommonJS(main_exports);
 })();
 /*! Bundled license information:
