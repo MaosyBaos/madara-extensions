@@ -24099,7 +24099,7 @@ Can fix the homepage "request page not found" error!`
      * 0: (POST) Form data https://domain.com/wp-admin/admin-ajax.php
      * 1: (POST) Alternative Ajax page (https://domain.com/manga/manga-slug/ajax/chapters)
      * 2: (POST) Manga page (https://domain.com/manga/manga-slug)
-     * 3: (GET) Manga page (https://domain.com/manga/manga-slug)
+     * 3: (GET) (DEFAULT) Manga page (https://domain.com/manga/manga-slug)
      */
     chapterEndpoint;
     /**

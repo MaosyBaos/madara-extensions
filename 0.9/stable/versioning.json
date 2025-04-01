@@ -1,5 +1,5 @@
 {
-  "buildTime": "2025-04-01T00:20:11.686Z",
+  "buildTime": "2025-04-01T13:00:30.471Z",
   "builtWith": {
     "toolchain": "1.0.0-alpha.46",
     "types": "1.0.0-alpha.46"
@@ -29,7 +29,7 @@
     {
       "name": "ArthurScan",
       "description": "Extension that pulls content from arthurscan.xyz.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇵🇹",
       "contentRating": "MATURE",
@@ -75,7 +75,7 @@
     {
       "name": "CoffeeManga",
       "description": "Extension that pulls content from coffeemanga.io.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "MATURE",
@@ -92,7 +92,7 @@
     {
       "name": "DarkScans",
       "description": "Extension that pulls content from darkscans.net.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "MATURE",
@@ -194,7 +194,7 @@
     {
       "name": "LHTranslation",
       "description": "Extension that pulls content from lhtranslation.net.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "SAFE",
@@ -348,7 +348,7 @@
     {
       "name": "MangaScantrad",
       "description": "Extension that pulls content from manga-scantrad.io.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇫🇷",
       "contentRating": "MATURE",
@@ -388,7 +388,7 @@
     {
       "name": "ManhuaFast",
       "description": "Extension that pulls content from manhuafast.com.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "MATURE",
@@ -479,7 +479,7 @@
     {
       "name": "NovelMic",
       "description": "Extension that pulls content from novelmic.com.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "MATURE",
@@ -496,7 +496,7 @@
     {
       "name": "PlatinumScans",
       "description": "Extension that pulls content from platinumscans.com.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "SAFE",
@@ -513,7 +513,7 @@
     {
       "name": "ResetScans",
       "description": "Extension that pulls content from reset-scans.co.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "SAFE",
@@ -553,7 +553,7 @@
     {
       "name": "SetsuScans",
       "description": "Extension that pulls content from setsuscans.com.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "MATURE",
@@ -604,7 +604,7 @@
     {
       "name": "Toonily",
       "description": "Extension that pulls content from toonily.com.",
-      "version": "1.0.0-alpha.2",
+      "version": "1.0.0-alpha.3",
       "icon": "icon.png",
       "language": "🇬🇧",
       "contentRating": "ADULT",
