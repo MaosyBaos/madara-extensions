@@ -24410,7 +24410,8 @@ Can fix the homepage "request page not found" error!`
       return query.replace(/'[^ ]*/g, "").replace(/\.+/g, "").replace(/["']/g, "").trim();
     }
     async slugToPostId(slug) {
-      if (await Application.getState(slug) == null) {
+      const postIdState = Application.getState(slug);
+      if (!postIdState || postIdState == null) {
         const postId2 = await this.convertSlugToPostId(slug);
         const existingMappedSlug = await Application.getState(postId2);
         if (existingMappedSlug != "") {
@@ -24419,7 +24420,7 @@ Can fix the homepage "request page not found" error!`
         Application.setState(postId2, slug);
         Application.setState(slug, postId2);
       }
-      const postId = await Application.getState(slug);
+      const postId = Application.getState(slug);
       if (!postId) throw new Error(`Unable to fetch postId for slug:${slug}`);
       return postId;
     }
@@ -24447,31 +24448,31 @@ Can fix the homepage "request page not found" error!`
         url: `${this.domain}/temp_dirpath/${slug}`,
         method: "HEAD"
       });
-      let postId = "";
-      const postIdRegex = headResponse?.headers["Link"]?.match(/\?p=(\d+)/);
+      let postId;
+      const postIdRegex = headResponse?.headers?.["link"]?.match(/\?p=(\d+)/);
       if (postIdRegex && postIdRegex[1]) postId = postIdRegex[1];
-      if (postId || !isNaN(Number(postId))) {
-        return postId?.toString();
+      if (postId && !isNaN(Number(postId))) {
+        return postId;
       }
       const [, buffer] = await Application.scheduleRequest({
         url: `${this.domain}/temp_dirpath/${slug}`,
         method: "GET"
       });
       const $2 = load(Application.arrayBufferToUTF8String(buffer));
-      postId = $2('link[rel="shortlink"]')?.attr("href")?.split("/?p=")[1] ?? "";
+      postId = $2('link[rel="shortlink"]')?.attr("href")?.split("/?p=")[1];
       if (isNaN(Number(postId))) {
-        postId = $2("a.wp-manga-action-button").attr("data-post") ?? "";
+        postId = $2("a.wp-manga-action-button").attr("data-post");
       }
       if (isNaN(Number(postId))) {
         const page = $2.root().html();
-        const match = page?.match(/manga_id.*\D(\d+)/);
+        const match = page?.match(/manga_id["']?\s*:\s*["']?(\d+)/);
         if (match && match[1]) {
           postId = match[1]?.trim();
         }
       }
-      if (isNaN(Number(postId))) {
+      if (!postId || isNaN(Number(postId))) {
         throw new Error(
-          `Unable to fetch numeric postId for this item! | slug:${slug}`
+          `Unable to fetch numeric postId for this item! (slug:${slug})`
         );
       }
       return postId;
@@ -24527,7 +24528,7 @@ Can fix the homepage "request page not found" error!`
   var pbconfig_default = {
     name: "Toonily",
     description: "Extension that pulls content from toonily.com.",
-    version: "1.0.0-alpha.1",
+    version: "1.0.0-alpha.2",
     icon: "icon.png",
     language: "\u{1F1EC}\u{1F1E7}",
     contentRating: import_types6.ContentRating.ADULT,
@@ -24556,7 +24557,7 @@ Can fix the homepage "request page not found" error!`
       });
     }
     constructSearchRequest(page, query) {
-      const urlBuilder = new import_types7.URL(this.domain).setPath(
+      const urlBuilder = new import_types7.URL(this.domain).addPathComponent(
         `search${query?.title ? encodeURIComponent(this.sanitizeQuery(query?.title ?? "")) + "/" : ""}/page/${page.toString()}`
       ).setQueryItem("post_type", "wp-manga");
       const genreFilters = Object.keys(
